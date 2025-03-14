@@ -1,5 +1,5 @@
 
-export const CardProfesional = ({nombre, descripcion, fotoPerfil}) => {
+export const CardProfesional = ({nombre, profesion, fotoPerfil}) => {
   return (
     <div className='perfil-profesional' style={{background:`url(/${fotoPerfil})`, backgroundSize:"cover", backgroundPosition: "center"}}>
 
@@ -10,7 +10,7 @@ export const CardProfesional = ({nombre, descripcion, fotoPerfil}) => {
 
                     <div>
                         <h3>{nombre}</h3>
-                        <p>{descripcion}</p>
+                        <p>{profesion}</p>
                     </div>
                 </div>
   )

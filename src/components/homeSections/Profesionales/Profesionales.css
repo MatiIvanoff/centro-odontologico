@@ -7,12 +7,13 @@
     }
 
     .container {
+        margin-top: 2rem;
         display: flex;
-
+        justify-content: space-between;
         .perfil-profesional {
             width: 30%;
             aspect-ratio: 1;
-            
+            border-radius: 10px;
             
         }
     }
