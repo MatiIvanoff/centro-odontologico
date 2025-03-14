@@ -1,0 +1,22 @@
+.seccion-profesionales {
+    padding: 3rem 0;
+    background-color: #E6F6FE;
+
+    h2, h6 {
+        text-align: center;
+    }
+
+    .container {
+        display: flex;
+
+        .perfil-profesional {
+            width: 30%;
+            aspect-ratio: 1;
+            
+            
+        }
+    }
+    
+    
+
+}

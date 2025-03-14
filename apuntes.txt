@@ -1,0 +1,94 @@
+
+** QUÉ ES REACT? 
+
+REACT ES UNA LIBRERIA/BIBLIOTECA DE JAVASCRIPT QUE NOS A PERMITR DESARROLLAR LA INTERFAZ DE USUARIO DE UNA MANERA MUCHO MÁS INTUITIVA Y DECLARATIVA. LO PODEMOS UTILIZAR TANTO PARA DESARROLLAR UI DE APLICACIONES WEB, MOVILES Y DE ESCRITORIO. 
+
+** CARACTERÍSTICAS PRINCIPALES: 
+
+    - COMPONETIZACIÓN: SE BASE EN LA COMPONETIZACIÓN DEL UI, PERMITIENDO DIVIDIR EN COMPONENTES INDEPENDIENTES UNOS DE OTROS. EJ: PAGINA COMPLETA PODEMOS SUBDIVIDIR CADA SECCION EN UN COMPONENTE INDEPENDIENTE -> HEADER, NAV, BANNER, CONTACTO, FOOTER,ETC..
+        ** UN COMPONENTE ES UNA FUNCIÓN QUE NOS PERMITE CREAR/FABRICAR UNA ESTRUCTURA HTML. 
+    
+    - VIRTUAL DOM: REACT UTILIZA UN DOM VIRTUAL A LA  HORA DE RENDERIZAR LOS COMPONENTES. ESTE ES UNA REPRESENTANCIÓN EN MEMORIA DEL DOM REAL. ESTO LE PERMITE A REACT REALIZAR LOS CAMBIOS DE FORMA ESPECIFICA, YA QUE COMPARA AMBOS 'DOM' Y IDENTIFICA LOS CAMBIOS REALIZADOS EN EL DOM VIRTUAL Y LOS APLICA AL REAL.
+
+    - DECLARATIVO: NO SE ESPECIFICA COMO SE DEBE REALIZAR PASO A PASO UNA TAREA, SINO QUE ESPECIFICA QUÈ ES LO QUE SE DEBE HACER. ESTO LO HACE MUCHO MÁS LEGIBLE Y FACIL DE MANTENER.
+
+    - UNIDIRECCIONAL: EN EL SENTIDO DE QUE LOS DATOS/INFORMACIÓN FLUYEN EN UNA SOLA DIRECCIÓN, DESDE LOS COMPONENTES PADRES A LOS HIJOS, Y NO A LA INVERSA.
+
+    - UNIVERSAL: SE PUEDE EJECUTAR TANTO DEL LADO DEL CLIENTE COMO DEL SERVIDOR. ADEMÁS NOS PERMITE DESARROLLAR UI ESPECIFICAS PARA WEB, MOVILES (ANDROID) Y ESCRITORIO.
+
+    - TER PERMITE DESARROLLAR SPA : SINGLE PAGE APPLICATION, SIEMPRE SE UTILIZA UN SOLO DOCUMENTO HTML, EL CUAL EL CONTENIDO DEL MISMO VA A CAMBIAR EN BASE A LAS INTERACCIONES CON EL USUARIO
+
+** CÓMO UTILIZAR REACT?
+
+PARA DESARROLLO DE APLICACIONES WEB, VAMOS A NECESITAR DOS LIBRERIAS: REACT Y REACT DOM.
+REACT: CONTIENE LAS FUNCIONALIDADES DE CREACIÓN DE COMPONENTES, HOOKS, SISTEMA DE PROPS, ETC, ES DECIR, FUNCIONALIDAD GENERAL DE LA LIBRERÍA. 
+REACT-DOM: ES LA QUE PERMITE RENDERIZAR LOS COMPONENTES DENTRO DE LA UI DEL NAVEGADOR.
+REACT-NATIVE: PERMITE RENDERIZAR TODO EL TRABAJO DE REACT, DENTRO DE ANDROID O IOS.
+
+** PARA IMPLEMENTAR REACT -> EN PRIMER LUGAR VAMOS A HACERLO A TRAVÉS DE LOS 'CDN'. NO ES LA FORMA RECOMENDADA, PERO NOS VAMOS A SERVIR PARA CONOCER LAS BASES DE LA LIBRERÍA.
+LA OPCIÓN UTILIZADA Y LA MEJOR PRACTICA ES INSTALAR REACT, A TRAVÉS DE UN 'EMPAQUETADOR' COMO VITE, CREATE REACT APP, GATSBY, NEXT JS. -> QUE ADEMÁS DE INSTALAR REACT, INSTALAN OTRAS DEPENDENCIAS QUE MEJORAR LA EXPERIENCIA DE DESARROLLO DE APPS.
+
+
+** JSX (JavaScript Syntax eXtension): básicamente es una extension de javascript (no es un lenguaje propiamente dicho). en el cual nos permite escribir/redactar código de forma muy similar a HTML pero dentro / desde JavaScript, de esta manera vincualmos ambos lenguajes en una sola sintaxis. Es mucho más eficiente, y declarativo.
+
+CÓMO FUNCIONA JSX ? :  El código redactado a través de esta extensión se transpila (traducir a un lenguaje final) a JavaScript PURO, al transpilarse las etiquetas se convierten en llamadas a funciones q crean elementos del dom (Componentes), para hacer esta transpilación se utilizar dependencias como SWC, o BABEL.
+
+
+
+/*
+
+    INSTALACIÓN DE UN PROYECTO REACT A TRAVÉS DE VITE.
+
+    1º npm create vite@latest -> y (seguir las instrucciones, darle un nombre al proyecto, ej: tienda-react)
+    2º posicionarte en la carpeta que se acaba de crear (tienda-react) -> cd tienda-react
+    3º npm install -> para instalar las dependencias programadas en el package.json
+    4º npm run dev -> para levantar el server y visualizar la app.
+ */
+
+
+ /* 
+    COMPONETIZAR ELEMENTOS: 
+    - Vamos a crear una carpeta llamada component, la cual va a contener todos nuestros componentes. Estos componentes los vamos a colocar dentro de una subcarpeta, y luego creamos un archivo .jsx que va a representar/contener el componente en cuestión, tanto la carpeta, como el archivo, como la función, deben ser redactados en PascalCase. Esto para diferenciarlos de etiquetas html convencionales, y además sin esta sintaxis, react no lo reconoce como componente y por lo tanto no va a funcionar. 
+ 
+    PARA LLAMAR A UN COMPONENTE LO HACEMOS COMO SI FUESE UNA ETIQUETA HTML 
+    -> <MainHeader></MainHeader>
+    Sino no necesitamos encerrar nada dentro del componente, podemos solo utilizar la etiqueta de apertura, cerrandola al final de la misma -> <MainHeader />
+ */
+
+ /* 
+    PROPS EN REACT: PODEMOS ENVIAR DATOS Y FUNCIONES A LOS COMPONENTES A TRAVÉS DE LAS 'PROPS' SON SIMILARES A LOS ATRIBUTOS DE UNA ETIQUETA, CON LA DIFERENCIA QUE ESTOS PUEDEN SER CAPTURADOS EN EL COMPONENTE PARA SU USO DENTRO DE ESTE. DE ESTA MANERA LOS COMPONENTES SON DINÁMICOS.
+    EJ: 
+
+    <CardServicio titulo="Implante dental" precio={precioServicio} />
+    <CardServicio titulo="Tratamiento conducto" precio={precioServicioDos} />
+
+    ** EL COMPONENTE RECIBE POR PARÁMETRO UN OBJETO QUE CONTIENE TODAS LAS PROPS QUE LE HAN PASADO.
+ 
+ */
+
+
+ /* 
+ 
+    ESTADOS EN REACT: useState() -> ES UN HOOK DE REACT QUE NOS PERMITE ALMACENAR Y ADMINISTRAR UN VALOR, Y ADEMÁS REACT VA A REACCIONAR AL CAMBIO DE ESE VALOR (ESTADO) POSIBILITANDO LA MODIFICACION DE LA UI.
+
+    ** QUÉ ES UN HOOK? ES UNA FUNCIONALIDAD ESPECIFICA, QUE GENERALMENTE SE PUEDE REUTILIZAR EN VARIAS PARTES DE NUESTRA APLICACIÓN, PODEMOS IDENTIFICAR UN HOOK POR LA PALABRA use, ej: useState(), useEffect(), useCallback(), infinidad de hooks existen tanto en React como en otras dependencias que trabajan con React.   
+
+    CÓMO PODEMOS UTILIZARLO? EN PRIMER LUGAR LO DEBEMOS IMPORTAR, LUEGO LO LLAMAMOS:
+    useState(valorInicial) -> le pasamos por parámetro el valor inicial de ese estado, puede ser un String, Number, boolean, object, array, null, etc.
+
+    * Este nos va a retornar un arreglo con dos elementos. 1º el valor el estado, 2º una función para modificar ese estado. ** NO SE PUEDE MODIFICAR EL ESTADO DIRECTAMENTE DESDE LA CONSTANTE.
+
+    ** CUANDO UN ESTADO CAMBIA DE VALOR -> EL COMPONENTE Y TODOS SUS HIJOS AL CUAL PERTENECE ESE ESTADO SE VUELVEN A RENDERIZAR
+    
+ */
+
+ /* 
+   useEffect() -> nos sirve para ejecutar una función callback, una vez o más, dependiendo si cambian las dependencias que le indiquemos.
+
+      useEffect(() => {}, []) -> Recibe dos parámetros, 1º función callback, 2º un listado de dependencias (variable, obj, array, boolean, etc) a 'escuchar', si alguna de esas dependencias se modifican/cambian la función se vuelve a ejecutar. 
+
+      si le pasos un listado vacío, la función callback solo se ejecuta cuando se renderiza/monto el componente.
+
+      ** useEffect() -> se ejecuta por lo menos una vez.
+ 
+ */
