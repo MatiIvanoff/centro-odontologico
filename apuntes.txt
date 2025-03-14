@@ -92,3 +92,17 @@ CÓMO FUNCIONA JSX ? :  El código redactado a través de esta extensión se tra
       ** useEffect() -> se ejecuta por lo menos una vez.
  
  */
+
+
+ COMANDO GIT REPOSITORIO LOCAL:
+
+ git init -> inicializa un repositorio local, se ejecuta una unica vez por proyecto
+ git status -> te muestra el estado de los archivos (modificaciones sin guardar)
+ git add . -> se agrega los archivos modificados al staging area (capa anterior a hacer el commit - guardado definitivo)
+ git commit -m 'comentarios' -> guardar todas las modificaciones de forma definitiva generando una nueva versión del código
+ 
+ Comandos para vincular el repositorio local a uno remoto (github):
+ 1- crear repositorio en github
+ 2- git branch -M main (opcional le cambia el nombre a la rama principal)
+ 3- git remote add origin ... url -> vincula el repositorio local con el repositorio remoto
+ 4- git push -u origin main -> sube el repositorio local al remoto 
