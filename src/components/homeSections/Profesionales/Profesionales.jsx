@@ -35,13 +35,6 @@ export const Profesionales = () => {
                             )
                         })
                         : <p>No hay profesionales disponibles</p>
-                    /*
-                       listadoServicios.map((servicio) => {
-                           return (
-                               <CardServicio key={servicio.id} aumentarContadorFav={aumentarContadorFav} descontarContadorFav={descontarContadorFav} titulo={servicio.titulo} imagen={servicio.imagen} descripcion={servicio.descripcion} favorito={servicio.favorito} />
-                           )
-                       })
-                           */
                 }
 
 

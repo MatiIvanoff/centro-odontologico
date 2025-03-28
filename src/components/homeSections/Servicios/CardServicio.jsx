@@ -11,8 +11,10 @@ export const CardServicio = ({ titulo, descripcion, imagen, favorito, descontarC
 
     const handleClickFavorito = () => {
         isFavorite ? descontarContadorFav() : aumentarContadorFav();
+
         setIsFavorite(!isFavorite);
     }
+
 
     return (
         <article className="info-servicio">

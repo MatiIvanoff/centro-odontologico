@@ -8,7 +8,7 @@ export const CardProfesional = ({nombre, profesion, fotoPerfil}) => {
                         <path d="M7.2 8.809H4V19.5h3.2V8.809Z" />
                     </svg>
 
-                    <div>
+                    <div className="info-profesional">
                         <h3>{nombre}</h3>
                         <p>{profesion}</p>
                     </div>

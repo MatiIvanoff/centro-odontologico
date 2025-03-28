@@ -27,6 +27,6 @@ export const peticionListarServicios = () => {
     return new Promise((resolve,reject) => {
         setTimeout(() => {
             resolve(listadoServicios)
-        }, 1000)
+        }, 3000)
     })
 }
