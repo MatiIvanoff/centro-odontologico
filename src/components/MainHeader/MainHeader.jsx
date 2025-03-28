@@ -13,7 +13,6 @@ export const MainHeader = () => {
                     </ul>
                 </nav>
             </div>
-
         </header>
     )
 }
