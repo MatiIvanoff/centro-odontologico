@@ -11,11 +11,16 @@
             list-style: none;
             display: flex;
             .item-menu{
-                padding: .5rem;
+              
                 margin-right: .5rem;
                 .enlace-menu{
+                    padding: .5rem;
                     color: royalblue;
                     text-decoration: none;
+                }
+                .active{
+                    background-color: royalblue;
+                    color: #fff;
                 }
             }
         }

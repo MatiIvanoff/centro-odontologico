@@ -1,0 +1,93 @@
+.seccion-servicios {
+    padding: 3rem 0;
+
+    .container {
+        background-color: #E6F6FE;
+        padding: 2rem;
+    }
+
+    .contenedor-categorias {
+        .listado-categorias {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+
+            .categoria {
+                margin-right: 1rem;
+
+
+            }
+
+            .enlace-categoria {
+                border: 1px solid;
+                border-radius: 30px;
+                padding: .3rem .5rem;
+                font-size: 12px;
+                color: #25b4f8;
+                border-color: #25b4f8;
+                transition: opacity 0.4s ease;
+                text-decoration: none;
+                &:hover{
+                    opacity: .4;
+                }
+                &.active {
+                    background-color: #25B4F8;
+                    color: #fff !important;
+                    border-color: #25B4F8;
+
+                }
+            }
+        }
+    }
+
+    .contenedor-servicios {
+
+        border-radius: 10px;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .info-servicio {
+            margin: 1rem 0;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 30%;
+            text-align: center;
+
+            .contenedor-img-servicio {
+                padding: .7rem .8rem;
+                border-radius: 50%;
+                background-color: #25B4F8;
+                width: fit-content;
+                display: block;
+                margin: auto;
+                border: 1px solid #fff;
+                filter: drop-shadow(0px 1px 3px #25B4F8);
+                margin-bottom: 1rem;
+
+                .img-servicio {
+                    display: block;
+                    min-width: 35px;
+                }
+            }
+
+            .titulo-servicio {
+                margin-bottom: 1rem;
+            }
+
+            .descripcion-servicio {
+                margin-bottom: 1rem;
+            }
+
+            .btn-servicio {
+                color: #011632;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+
+        }
+    }
+}
