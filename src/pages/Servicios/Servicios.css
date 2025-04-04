@@ -27,9 +27,11 @@
                 border-color: #25b4f8;
                 transition: opacity 0.4s ease;
                 text-decoration: none;
-                &:hover{
+
+                &:hover {
                     opacity: .4;
                 }
+
                 &.active {
                     background-color: #25B4F8;
                     color: #fff !important;
@@ -81,10 +83,27 @@
                 margin-bottom: 1rem;
             }
 
-            .btn-servicio {
-                color: #011632;
-                font-weight: bold;
-                font-size: 14px;
+            .contenedor-btn-servicio {
+                text-decoration: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all .4s ease;
+
+                &:hover {
+                    opacity: .6;
+                }
+
+                .btn-servicio {
+                    color: #011632;
+                    font-weight: bold;
+                    font-size: 14px;
+                    margin-right: .3rem;
+                }
+
+                svg {
+                    color: #011632;
+                }
             }
 
 

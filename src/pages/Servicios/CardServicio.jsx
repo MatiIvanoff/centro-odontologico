@@ -1,8 +1,9 @@
 
+import { Link } from "react-router";
 import { RightArrowIcon } from "../../components/Icons/Icons";
 
 
-export const CardServicio = ({ titulo, descripcion, imagen}) => {
+export const CardServicio = ({id, titulo, descripcion, imagen }) => {
     /*
         A TRAVÉS DEL PARÁMETRO props -> NOS LLEGA UN OBJETO CON TODAS LAS PROPIEDADES QUE SE LE PASARON AL COMPONENTE CUANDO LO INVOCARON.
         COMO TODO OBJETO PODEMOS DESESTRUCTURARLO -> const {titulo, descripcion,imagen} = props;
@@ -18,7 +19,11 @@ export const CardServicio = ({ titulo, descripcion, imagen}) => {
 
             <h3 className="titulo-servicio">{titulo}</h3>
             <p className="descripcion-servicio">{descripcion}</p>
-            <a className="btn-servicio" href="#">Learn More <RightArrowIcon /></a>
+            <Link to={`/servicio/${id}`} className="contenedor-btn-servicio">
+                <span className="btn-servicio" href="">Turnos</span>
+                <RightArrowIcon />
+
+            </Link>
         </article>
     )
 }
