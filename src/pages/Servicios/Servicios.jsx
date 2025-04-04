@@ -72,7 +72,7 @@ export const Servicios = () => {
                             :
                             listadoServicios.map((servicio) => {
                                 return (
-                                    <CardServicio key={servicio.id} titulo={servicio.titulo} imagen={servicio.imagen} descripcion={servicio.descripcion} />
+                                    <CardServicio key={servicio.id} id={servicio.id} titulo={servicio.titulo} imagen={servicio.imagen} descripcion={servicio.descripcion} />
                                 )
                             })
 

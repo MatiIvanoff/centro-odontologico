@@ -1,0 +1,54 @@
+.seccion-detalle-servicio {
+    padding: 2rem 0;
+    background-color: #011632;
+    color: #fff;
+
+    .contenedor-detalle-servicio {
+        max-width: 45%;
+        padding: 1rem;
+        border-radius: 5px;
+
+        .breadcumb {
+            .breadcumb-enlace{
+                color: #25B4F8;
+                font-size: 14px;
+                text-decoration: none;
+            }
+        }
+
+        .detalle-servicio-titulo {
+            font-weight: 600;
+            font-size: 24px;
+        }
+
+        .detalle-servicio-texto {
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .contenedor-horarios {
+            padding: 1.5rem 1rem;
+            background-color: #ffffff;
+            color: #000;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px 3px #1376f8;
+
+            .listado-horarios {
+                font-size: 14px;
+                margin-top: .5rem;
+                list-style: none;
+            }
+
+            .btn-reservar-turno {
+                background-color: #1376F8;
+                padding: .4rem 1rem;
+                border: 0;
+                border-radius: 5px;
+                color: #fff;
+                margin-top: 1rem;
+                transition: all .4s ease;
+                cursor: pointer;
+            }
+        }
+    }
+}

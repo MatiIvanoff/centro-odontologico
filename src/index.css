@@ -12,3 +12,7 @@
   max-width: 85%;
   margin: auto;
 }
+.text-error{
+  color: rgb(177, 4, 4);
+  font-style: italic;
+}
