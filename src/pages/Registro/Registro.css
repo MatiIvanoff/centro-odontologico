@@ -15,11 +15,16 @@
 
         form {
 
+            .form-error {
+                font-size: 14px;
+                color: rgb(162, 8, 8);
+            }
+
             input {
                 display: block;
                 width: 100%;
                 padding: .7rem .5rem;
-                margin: 1.5rem 0;
+                margin: 1.5rem 0 0 0;
                 border-radius: 8px;
                 border: 1.5px solid #AFAFAF;
 
