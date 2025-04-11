@@ -105,4 +105,5 @@ CÓMO FUNCIONA JSX ? :  El código redactado a través de esta extensión se tra
  1- crear repositorio en github
  2- git branch -M main (opcional le cambia el nombre a la rama principal)
  3- git remote add origin ... url -> vincula el repositorio local con el repositorio remoto
- 4- git push -u origin main -> sube el repositorio local al remoto 
+ 4- git push -u origin main -> sube el repositorio local al remoto
+ 5- git pull origin nombre de rama principal
