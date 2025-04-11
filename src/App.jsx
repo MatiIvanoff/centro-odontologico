@@ -7,6 +7,7 @@ import { Servicios } from "./pages/Servicios/Servicios"
 import { NotFound } from "./pages/NotFound/NotFound"
 import { DetalleServicio } from "./pages/DetalleServicio/DetalleServicio"
 import { Registro } from "./pages/Registro/registro"
+import { RegistroDos } from "./pages/Registro/RegistroDos"
 
 
 
@@ -22,7 +23,9 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/servicios/:categoria" element={<Servicios />} />
         <Route path="/servicio/:id" element={<DetalleServicio />} />
+
         <Route path="/registro" element={<Registro />} />
+        <Route path="/registrodos" element={<RegistroDos />} />
 
         <Route path="/*" element={<NotFound />} />
       </Routes>
