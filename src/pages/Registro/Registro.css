@@ -6,14 +6,19 @@
 
         img {
             width: 100%;
+            aspect-ratio: 12 / 10;
+            /* w -> 500px, h -> 500px; */
+            object-fit: cover;
+        
         }
     }
 
     .contenedor-registro {
         width: 50%;
-        padding: 6rem 5rem;
+        padding: 6rem 8rem;
 
         form {
+            max-width: 400px;
 
             .form-error {
                 font-size: 14px;
@@ -28,7 +33,7 @@
                 border-radius: 8px;
                 border: 1.5px solid #AFAFAF;
 
-                
+
             }
 
             input::placeholder {
@@ -43,6 +48,13 @@
                 border-radius: 8px;
                 background-color: #1376F8;
                 color: white;
+                margin-top: 2rem;
+                cursor: pointer;
+                transition: all .4s ease;
+
+                &:hover {
+                    opacity: .6;
+                }
             }
         }
     }
