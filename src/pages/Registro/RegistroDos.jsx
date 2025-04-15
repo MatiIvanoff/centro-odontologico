@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import './Registro.css'
 import { useForm } from 'react-hook-form'
+import { peticionRegister } from '../../API/auth';
 
 export const RegistroDos = () => {
+    
+    const [errorRegister, setErrorRegister] = useState(null);
+    const [usuario, setUsuario] = useState(null)
+    const [loadingAuth, setLoadingAuth] = useState(false);
 
     const {
         register,
@@ -15,9 +20,20 @@ export const RegistroDos = () => {
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){6,15}$/
 
 
-    const onSubmit = (data) => {
-      console.log('No hay errores');
-      console.log(data);
+    const onSubmit = async (data) => {
+        setLoadingAuth(true)
+        try {
+            const response = await peticionRegister(data)
+            console.log(response);
+
+            setErrorRegister(null)
+        } catch (error) {
+            setErrorRegister(error.response.data.message)
+            console.log(error.response.data.message)
+        }
+        setLoadingAuth(false)
+        
+
     }
 
 
@@ -41,8 +57,8 @@ export const RegistroDos = () => {
                             required: "El campo nombre es obligatorio",
                             minLength: {
                                 value: 4,
-                                message:"El nombre debe contener al menos 4 carácteres."
-                            } 
+                                message: "El nombre debe contener al menos 4 carácteres."
+                            }
                         })
                         }
                     />
@@ -57,12 +73,12 @@ export const RegistroDos = () => {
                             required: "El campo email es obligatorio",
                             minLength: {
                                 value: 8,
-                                message:"El email debe contener al menos 8 carácteres."
-                            } ,
-                            pattern:  {
+                                message: "El email debe contener al menos 8 carácteres."
+                            },
+                            pattern: {
                                 value: regexEmail,
                                 message: "El email debe poseer un formato válido."
-                              }
+                            }
                         })
                         }
                     />
@@ -75,14 +91,14 @@ export const RegistroDos = () => {
                         {
                         ...register("password", {
                             required: "La contraseña es obligitoria",
-                            minLength:{
+                            minLength: {
                                 value: 6,
-                                message:"La contraseña debe contener al menos 6 carácteres."
-                            } ,
-                         /*   pattern:  {
-                                value: regexPassword,
-                                message: "La contraseña debe contener: Al menos 6 carácteres, 1 mayus, 1 minus, 1 digito, y 1 carácter especial."
-                              } */
+                                message: "La contraseña debe contener al menos 6 carácteres."
+                            },
+                            /*   pattern:  {
+                                   value: regexPassword,
+                                   message: "La contraseña debe contener: Al menos 6 carácteres, 1 mayus, 1 minus, 1 digito, y 1 carácter especial."
+                                 } */
                         })
                         }
                     />
@@ -93,7 +109,7 @@ export const RegistroDos = () => {
 
                     <input type="password" placeholder='Confirmar contraseña'
                         {
-                        ...register("confirmPassword", {
+                        ...register("passwordConfirm", {
                             required: "La confirmación de la contraseña es obligitoria",
                             validate: (value) => {
                                 if (watch('password') != value) {
@@ -104,11 +120,14 @@ export const RegistroDos = () => {
                         }
                     />
                     {
-                        errors.confirmPassword &&
-                        <p className='form-error'>{errors.confirmPassword.message}</p>
+                        errors.passwordConfirm &&
+                        <p className='form-error'>{errors.passwordConfirm.message}</p>
                     }
-
-                    <button type="submit">Registrarme</button>
+                    {
+                    errorRegister &&
+                    <p className='form-error'>{errorRegister}</p>
+                    }
+                    <button type="submit">{loadingAuth ? 'Cargando ...' : 'Registrar'}</button>
                 </form>
 
 

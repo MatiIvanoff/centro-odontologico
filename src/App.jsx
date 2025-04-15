@@ -25,8 +25,8 @@ function App() {
         <Route path="/servicios/:categoria" element={<Servicios />} />
         <Route path="/servicio/:id" element={<DetalleServicio />} />
 
-        <Route path="/registro" element={<Registro />} />
-        <Route path="/registrodos" element={<RegistroDos />} />
+        
+        <Route path="/registro" element={<RegistroDos />} />
         <Route path="/login" element={<Login />} />
         
 
