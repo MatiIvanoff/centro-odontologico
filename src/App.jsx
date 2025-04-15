@@ -8,6 +8,7 @@ import { NotFound } from "./pages/NotFound/NotFound"
 import { DetalleServicio } from "./pages/DetalleServicio/DetalleServicio"
 import { Registro } from "./pages/Registro/registro"
 import { RegistroDos } from "./pages/Registro/RegistroDos"
+import { Login } from "./pages/Login/Login"
 
 
 
@@ -26,6 +27,8 @@ function App() {
 
         <Route path="/registro" element={<Registro />} />
         <Route path="/registrodos" element={<RegistroDos />} />
+        <Route path="/login" element={<Login />} />
+        
 
         <Route path="/*" element={<NotFound />} />
       </Routes>

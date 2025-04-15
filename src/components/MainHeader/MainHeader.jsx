@@ -12,7 +12,9 @@ export const MainHeader = () => {
                         <li className="item-menu"><NavLink className="enlace-menu" to="/servicios">Servicios</NavLink></li>
                         <li className="item-menu"><NavLink className="enlace-menu" to="/turnos">Turnos</NavLink></li>
                         <li className="item-menu"><NavLink className="enlace-menu" to="/contacto">Contacto</NavLink></li>
+                        <li className="item-menu"><NavLink className="enlace-menu" to="/login">Iniciar Sesión</NavLink></li>
                         <li className="item-menu"><NavLink className="enlace-menu" to="/registro">Registro</NavLink></li>
+                        
 
                     </ul>
                 </nav>
