@@ -79,10 +79,10 @@ export const RegistroDos = () => {
                                 value: 6,
                                 message:"La contraseña debe contener al menos 6 carácteres."
                             } ,
-                            pattern:  {
+                         /*   pattern:  {
                                 value: regexPassword,
                                 message: "La contraseña debe contener: Al menos 6 carácteres, 1 mayus, 1 minus, 1 digito, y 1 carácter especial."
-                              }
+                              } */
                         })
                         }
                     />
