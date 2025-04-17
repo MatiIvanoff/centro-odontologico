@@ -9,13 +9,14 @@ import { DetalleServicio } from "./pages/DetalleServicio/DetalleServicio"
 import { Registro } from "./pages/Registro/registro"
 import { RegistroDos } from "./pages/Registro/RegistroDos"
 import { Login } from "./pages/Login/Login"
+import { AuthProvider } from "./context/authContext"
 
 
 
 function App() {
 
   return (
-    <>
+    <AuthProvider>
 
       <MainHeader />
       <Routes>
@@ -25,15 +26,17 @@ function App() {
         <Route path="/servicios/:categoria" element={<Servicios />} />
         <Route path="/servicio/:id" element={<DetalleServicio />} />
 
-        
+
         <Route path="/registro" element={<RegistroDos />} />
         <Route path="/login" element={<Login />} />
-        
+
 
         <Route path="/*" element={<NotFound />} />
+
+        
       </Routes>
 
-    </>
+    </AuthProvider>
   )
 }
 
