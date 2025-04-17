@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import { peticionLogin } from "../../API/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
+import { useAuthContext } from "../../context/authContext";
+import { useNavigate } from "react-router";
 
 export const Login = () => {
+  const navigate = useNavigate()
+  // al implementar useAuthContext() -> devuelve un objeto con todos los values del contexto Auth, como solo necesito algunas props de ese objeto, lo desestructuro
+  const { error, usuario, estaAutenticado, loadingAuth, loginUsuario } = useAuthContext()
 
-  const [errorLogin, setErrorLogin] = useState(null);
-  const [usuario, setUsuario] = useState(null)
-  const [loadingAuth, setLoadingAuth] = useState(false);
   const {
     register,
     handleSubmit,
@@ -16,21 +18,14 @@ export const Login = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    setLoadingAuth(true)
-    try {
-      const response = await peticionLogin(data);
-      console.log(response);
-      console.log('Logeo exitoso');
-      setUsuario(response.data.usuario)
-      setErrorLogin(null)
-    } catch (error) {
-      console.log(error.response.data.message);
-      setErrorLogin(error.response.data.message)
-    }
-    setLoadingAuth(false)
-
+    await loginUsuario(data)
   }
 
+  useEffect(() => {
+    if (estaAutenticado) {
+      navigate('/');
+    }
+  }, [estaAutenticado])
 
   return (
     <section className='seccion-registro'>
@@ -40,15 +35,6 @@ export const Login = () => {
 
       <div className='contenedor-registro'>
         <h2>Login</h2>
-
-        {
-          usuario &&
-          <>
-            <p>Nombre: {usuario.nombre}</p>
-            <p>Email: {usuario.email}</p>
-            <p>ID: {usuario.id}</p>
-          </>
-        }
 
         <p>Ingresa y reserva tus turnos</p>
 
@@ -88,9 +74,9 @@ export const Login = () => {
 
 
           {
-            errorLogin
+            error
             &&
-            <p className='form-error'>{errorLogin}</p>
+            <p className='form-error'>{error}</p>
           }
           <button type="submit">{loadingAuth ? <ClipLoader /> : 'Ingresar'}</button>
         </form>
