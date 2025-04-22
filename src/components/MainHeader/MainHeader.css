@@ -10,9 +10,16 @@
         .listado-menu {
             list-style: none;
             display: flex;
+            align-items: center;
             .item-menu{
               
                 margin-right: .5rem;
+                button{
+                    border: 0;
+                    font-size: 16px;
+                    padding: 0;
+                    cursor: pointer;
+                }
                 .enlace-menu{
                     padding: .5rem;
                     color: royalblue;

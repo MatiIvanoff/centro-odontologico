@@ -6,21 +6,7 @@ let listadoServicios = [
         descripcion: "El tratamiento de conductos radiculares (endodoncia) es un procedimiento odontológico utilizado para tratar la infección en el centro de un diente.",
         imagen: "conducto.svg",
         categoria: 'Odontología',
-        dias_atencion: [
-            {
-                dia: 'Lunes',
-                horarios: ['8:00 AM - 10:00 AM', '14:00 PM - 18:00 AM']
-            },
-            {
-                dia: 'Miércoles',
-                horarios: ['8:00 AM - 10:00 AM', '14:00 PM - 18:00 AM']
-            }
-            ,
-            {
-                dia: 'Viernes',
-                horarios: ['8:00 AM - 10:00 AM', '14:00 PM - 18:00 AM']
-            }
-        ]
+        profesionales_asociados: ['3123123', '3123', '55666']
     },
     {
         id: 691,

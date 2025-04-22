@@ -10,6 +10,8 @@ import { Registro } from "./pages/Registro/registro"
 import { RegistroDos } from "./pages/Registro/RegistroDos"
 import { Login } from "./pages/Login/Login"
 import { AuthProvider } from "./context/authContext"
+import { PerfilPage } from "./pages/PerfilPage/PerfilPage"
+import { RutasProtegidas } from "./RutasProtegidas"
 
 
 
@@ -31,9 +33,16 @@ function App() {
         <Route path="/login" element={<Login />} />
 
 
+        <Route element={<RutasProtegidas />}>
+          <Route path="/perfil" element={<PerfilPage />} />
+          <Route path="/mis-turnos" element={<PerfilPage />} />
+        </Route>
+
+
+
         <Route path="/*" element={<NotFound />} />
 
-        
+
       </Routes>
 
     </AuthProvider>

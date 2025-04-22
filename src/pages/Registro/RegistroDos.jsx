@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './Registro.css'
 import { useForm } from 'react-hook-form'
 import { peticionRegister } from '../../API/auth';
-import { useAuthContext } from '../../context/authContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router';
 
 export const RegistroDos = () => {
