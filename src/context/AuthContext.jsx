@@ -4,7 +4,8 @@
 */
 
 import { createContext, useContext, useState } from "react";
-import { peticionLogin } from "../API/auth";
+import { peticionLogin, peticionRegister } from "../API/auth";
+import { useNavigate } from "react-router";
 
 // 1º paso crear el contexto.
 export const AuthContext = createContext();
@@ -21,6 +22,8 @@ export const useAuthContext = () => {
 
 // 3º paso -> la creación del Provider
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate()
+
     const [error, setError] = useState(null);
     const [usuario, setUsuario] = useState(null);
     const [estaAutenticado, setEstaAutenticado] = useState(false);
@@ -33,6 +36,8 @@ export const AuthProvider = ({ children }) => {
             setUsuario(response.data.usuario)
             setEstaAutenticado(true)
             setError(null)
+
+            localStorage.setItem('token', response.data.token)
         } catch (error) {
             console.log(error);
             
@@ -41,6 +46,31 @@ export const AuthProvider = ({ children }) => {
         setLoadingAuth(false)
     }
 
+    const registroUsuario = async (usuario) => {
+        setLoadingAuth(true)
+        try {
+            const response = await peticionRegister(usuario)
+            
+            setUsuario(response.data.usuario)
+            setEstaAutenticado(true)
+            setError(null)
+            localStorage.setItem('token', response.data.token)
+        } catch (error) {
+            setError(error.response.data.message)
+            console.log(error.response.data.message)
+        }
+        setLoadingAuth(false)
+    }
+
+    const logoutUsuario = async () => {
+        setUsuario(null)
+        setEstaAutenticado(false)
+        setError(null)
+        setLoadingAuth(false)
+
+        localStorage.removeItem('token')
+        navigate("/")
+    }
 
     // RETORNO A LOS ELEMENTOS HIJOS DEL CONTEXTO (GENERALMENTE A TODA LA APP) LOS ESTADOS Y FUNCIONES QUE QUIERO COMPARTIR.
     return (
@@ -49,7 +79,9 @@ export const AuthProvider = ({ children }) => {
             estaAutenticado,
             error,
             loadingAuth,
-            loginUsuario
+            loginUsuario,
+            registroUsuario,
+            logoutUsuario
         }}>
             {children}
         </AuthContext.Provider>

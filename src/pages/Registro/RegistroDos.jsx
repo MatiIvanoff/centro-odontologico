@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Registro.css'
 import { useForm } from 'react-hook-form'
 import { peticionRegister } from '../../API/auth';
+import { useAuthContext } from '../../context/authContext';
+import { useNavigate } from 'react-router';
 
 export const RegistroDos = () => {
-    
-    const [errorRegister, setErrorRegister] = useState(null);
-    const [usuario, setUsuario] = useState(null)
-    const [loadingAuth, setLoadingAuth] = useState(false);
+    const navigate = useNavigate()
+
+    const {registroUsuario, error, loadingAuth, estaAutenticado} = useAuthContext()
 
     const {
         register,
@@ -21,21 +22,16 @@ export const RegistroDos = () => {
 
 
     const onSubmit = async (data) => {
-        setLoadingAuth(true)
-        try {
-            const response = await peticionRegister(data)
-            console.log(response);
-
-            setErrorRegister(null)
-        } catch (error) {
-            setErrorRegister(error.response.data.message)
-            console.log(error.response.data.message)
-        }
-        setLoadingAuth(false)
         
+        registroUsuario(data)
 
     }
 
+    useEffect(() => {
+        if(estaAutenticado) {
+            navigate("/perfil")
+        }
+    },[estaAutenticado])
 
 
     return (
@@ -124,8 +120,8 @@ export const RegistroDos = () => {
                         <p className='form-error'>{errors.passwordConfirm.message}</p>
                     }
                     {
-                    errorRegister &&
-                    <p className='form-error'>{errorRegister}</p>
+                    error &&
+                    <p className='form-error'>{error}</p>
                     }
                     <button type="submit">{loadingAuth ? 'Cargando ...' : 'Registrar'}</button>
                 </form>

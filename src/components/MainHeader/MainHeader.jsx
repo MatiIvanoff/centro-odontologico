@@ -3,7 +3,7 @@ import './MainHeader.css'
 import { useAuthContext } from '../../context/authContext'
 export const MainHeader = () => {
 
-    const { estaAutenticado } = useAuthContext();
+    const { estaAutenticado,logoutUsuario } = useAuthContext();
     return (
         <header className="main-header">
             <div className="container">
@@ -20,7 +20,7 @@ export const MainHeader = () => {
                                 ?
                                 <>
                                     <li className="item-menu"><NavLink className="enlace-menu" to="/perfil">Perfil</NavLink></li>
-                                    <li className="item-menu"><NavLink className="enlace-menu" to="/salir">Salir</NavLink></li>
+                                    <li className="item-menu"><button className="enlace-menu" onClick={logoutUsuario}>Salir</button></li>
                                 </>
                                 :
                                 <>
