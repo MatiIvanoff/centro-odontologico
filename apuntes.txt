@@ -107,3 +107,21 @@ CÓMO FUNCIONA JSX ? :  El código redactado a través de esta extensión se tra
  3- git remote add origin ... url -> vincula el repositorio local con el repositorio remoto
  4- git push -u origin main -> sube el repositorio local al remoto
  5- git pull origin nombre de rama principal
+
+
+*/ ! METODOS
+GET : /servicios -> Lista todos los servicios
+POST:  /servicios -> Registra un nuevo servicio
+GET: /profesionales/servicios/:id -> Lista todos los profesionales de un servicio especifico (id)
+POST: /profesionales -> Registra un nuevo profesional
+
+DATOS PARA REGISTRAR UN NUEVO SERVICIO
+Data para registrar un nuevo servicio:     titulo,
+                descripcion,
+                portada,
+                categoria
+
+DATOS PARA REGISTRAR UN NUEVO PROFESIONAL
+Datos para registrar un nuevo Profesional: nombre, email, password, passwordConfirm, especialidad, servicios, horarioAtencion
+
+Servicios: [id] , HorarioAtencion: [{dia:"Lunes", horarios:['09:00', '09:30']}]

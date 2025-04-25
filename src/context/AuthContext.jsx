@@ -3,8 +3,8 @@
 
 */
 
-import { createContext, useContext, useState } from "react";
-import { peticionLogin, peticionRegister } from "../API/auth";
+import { createContext, useContext, useEffect, useState } from "react";
+import { peticionLogin, peticionRegister, peticionVerificarLogin } from "../API/auth";
 import { useNavigate } from "react-router";
 
 // 1º paso crear el contexto.
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
     const [usuario, setUsuario] = useState(null);
     const [estaAutenticado, setEstaAutenticado] = useState(false);
-    const [loadingAuth, setLoadingAuth] = useState(false);
+    const [loadingAuth, setLoadingAuth] = useState(true);
 
     const loginUsuario = async (usuario) => {
         setLoadingAuth(true)
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('token', response.data.token)
         } catch (error) {
             console.log(error);
-            
+
             setError(error.response.data.message)
         }
         setLoadingAuth(false)
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         setLoadingAuth(true)
         try {
             const response = await peticionRegister(usuario)
-            
+
             setUsuario(response.data.usuario)
             setEstaAutenticado(true)
             setError(null)
@@ -71,6 +71,44 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('token')
         navigate("/")
     }
+
+    const verificarLogin = async () => {
+        setLoadingAuth(true)
+        const token = localStorage.getItem('token');
+        // si existe el token, vamos a validarlo en el backend, para ello haremos la petición correspondiente.
+        if (token) {
+
+            try {
+                const response = await peticionVerificarLogin();
+                setUsuario(response.data);
+                setEstaAutenticado(true);
+                setLoadingAuth(false);
+                setError(null);
+            } catch (error) {
+                setUsuario(null)
+                setEstaAutenticado(false)
+                setError(error.response.data.message)
+                setLoadingAuth(false);
+            }
+        }
+        setLoadingAuth(false);
+    }
+
+    // useEffect para verificar si el usuario está logeado en cuanto se renderiza por primera vez la app
+    useEffect(() => {
+        verificarLogin();
+    }, [])
+
+    // useEffect para limpiar posibles errores del form
+    useEffect(() => {
+        if (error) {
+            const timeoout = setTimeout(() => {
+                setError(null)
+            }, 5000)
+            return () => clearTimeout(timeoout)
+        }
+
+    }, [error])
 
     // RETORNO A LOS ELEMENTOS HIJOS DEL CONTEXTO (GENERALMENTE A TODA LA APP) LOS ESTADOS Y FUNCIONES QUE QUIERO COMPARTIR.
     return (

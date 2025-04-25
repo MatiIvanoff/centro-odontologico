@@ -1,0 +1,72 @@
+.contenedor-especialistas {
+    
+    h3 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        color: #222;
+    }
+
+    .listado-especialistas {
+        list-style: none;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .tabla-doctor {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 1.5rem;
+        align-items: flex-start;
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.01);
+        }
+
+        .informacion-doctor {
+            flex: 1;
+
+            .titulo-servicio {
+                font-size: 1.3rem;
+                color: #0044cc;
+                font-weight: 600;
+                margin-bottom: 0.3rem;
+            }
+
+            .descripcion-servicio {
+                font-size: 0.95rem;
+                color: #666;
+                margin-bottom: 0.8rem;
+            }
+
+            .boton-turno {
+                margin-top: 1rem;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
+            }
+        }
+
+        .calendar {
+            flex: 2;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+        }
+    }
+}
