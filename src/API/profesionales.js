@@ -18,7 +18,7 @@ let listadoProfesionales = [
         profesion:"Ortodoncista"
     }
 ]
-
+import axios from "./axios.js";
 
 export const peticionListarProfesionales = () => {
     return new Promise((resolve,reject) => {
@@ -27,3 +27,5 @@ export const peticionListarProfesionales = () => {
         }, 1000)
     })
 }
+
+export const peticionListarProfesionalesPorServicio = (id) => axios.get(`profesionales/servicios/${id}`)

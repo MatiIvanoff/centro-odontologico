@@ -35,6 +35,8 @@ export const ServiceProvider = ({ children }) => {
         try {
             const response = await peticionListarDetalleServicio(id)
             setDetalleServicio(response.data)
+ 
+            
             setError(null)
         } catch (error) {
             setError(error.response.data.message)
