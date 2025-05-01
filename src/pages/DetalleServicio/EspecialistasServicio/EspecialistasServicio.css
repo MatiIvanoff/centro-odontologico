@@ -1,5 +1,5 @@
 .contenedor-especialistas {
-    
+
     h3 {
         font-size: 1.8rem;
         margin-bottom: 2rem;
@@ -17,20 +17,48 @@
     .tabla-doctor {
         display: flex;
         flex-direction: row;
-        gap: 2rem;
         background-color: #fff;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         padding: 1.5rem;
-        align-items: flex-start;
+
         transition: transform 0.2s ease;
+
+        h5 {
+            color: #2c2c2c;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                margin-top: .5rem;
+                color: #2c2c2c;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+
+                svg {
+                    height: 18px;
+                    width: 18px;
+                    margin-right: .5rem;
+                }
+            }
+        }
 
         &:hover {
             transform: scale(1.01);
         }
 
         .informacion-doctor {
-            flex: 1;
+
+            width: 33%;
+
+            .img-profesional {
+                width: 100px;
+                aspect-ratio: 1;
+                object-fit: cover;
+            }
 
             .titulo-servicio {
                 font-size: 1.3rem;
@@ -45,6 +73,33 @@
                 margin-bottom: 0.8rem;
             }
 
+        }
+
+        .contenedor-servicios-doc {
+            border-right: 1px solid #000;
+            border-left: 1px solid #000;
+            width: 33%;
+            padding-left: 2rem;
+        }
+
+        .calendar {
+            width: 33%;
+            padding-left: 2rem;
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.6;
+
+            .dia {
+                margin-right: 1rem;
+            }
+
+            .hora-atencion {
+                margin-right: .5rem;
+                font-weight: 500;
+                font-style: italic;
+            }
+
+            
             .boton-turno {
                 margin-top: 1rem;
                 background-color: #007bff;
@@ -60,13 +115,6 @@
                     background-color: #0056b3;
                 }
             }
-        }
-
-        .calendar {
-            flex: 2;
-            font-size: 0.95rem;
-            color: #444;
-            line-height: 1.6;
         }
     }
 }

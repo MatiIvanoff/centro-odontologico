@@ -12,6 +12,7 @@ import { Login } from "./pages/Login/Login"
 import { AuthProvider } from "./context/authContext"
 import { EspecialistasServicio } from "./pages/DetalleServicio/EspecialistasServicio/EspecialistasServicio"
 import { ServiceProvider } from "./context/ServiceContext"
+import { ProfesionalesProvider } from "./context/ProfesionalesContext"
 
 
 
@@ -19,24 +20,26 @@ function App() {
 
   return (
     <AuthProvider>
-    <ServiceProvider>
-      <MainHeader />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/servicios" element={<Servicios />} />
-        <Route path="/servicios/:categoria" element={<Servicios />} />
-        <Route path="/servicio/:id" element={<DetalleServicio />} />
-        <Route path="/turnos" element={<EspecialistasServicio />} />
+      <ServiceProvider>
+        <ProfesionalesProvider>
+          <MainHeader />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/servicios/:categoria" element={<Servicios />} />
+            <Route path="/servicio/:id" element={<DetalleServicio />} />
+            <Route path="/turnos" element={<EspecialistasServicio />} />
 
-        <Route path="/registro" element={<RegistroDos />} />
-        <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<RegistroDos />} />
+            <Route path="/login" element={<Login />} />
 
 
-        <Route path="/*" element={<NotFound />} />
+            <Route path="/*" element={<NotFound />} />
 
-        
-      </Routes>
+
+          </Routes>
+        </ProfesionalesProvider>
       </ServiceProvider>
     </AuthProvider>
   )
