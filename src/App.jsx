@@ -9,7 +9,7 @@ import { DetalleServicio } from "./pages/DetalleServicio/DetalleServicio"
 import { Registro } from "./pages/Registro/registro"
 import { RegistroDos } from "./pages/Registro/RegistroDos"
 import { Login } from "./pages/Login/Login"
-import { AuthProvider } from "./context/AuthContext"
+import { AuthProvider } from "./context/authContext"
 import { EspecialistasServicio } from "./pages/DetalleServicio/EspecialistasServicio/EspecialistasServicio"
 import { ServiceProvider } from "./context/ServiceContext"
 
