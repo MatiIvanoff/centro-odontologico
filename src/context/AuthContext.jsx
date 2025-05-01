@@ -3,9 +3,12 @@
 
 */
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { peticionLogin, peticionRegister, peticionVerificarLogin } from "../API/auth";
 import { useNavigate } from "react-router";
+import { authReducer, initialState, ACTIONS } from "../reducer/authReducer/authReducer";
+
+
 
 // 1º paso crear el contexto.
 export const AuthContext = createContext();
@@ -19,79 +22,62 @@ export const useAuthContext = () => {
     return context
 }
 
-
 // 3º paso -> la creación del Provider
 export const AuthProvider = ({ children }) => {
+
     const navigate = useNavigate()
 
-    const [error, setError] = useState(null);
-    const [usuario, setUsuario] = useState(null);
-    const [estaAutenticado, setEstaAutenticado] = useState(false);
-    const [loadingAuth, setLoadingAuth] = useState(true);
+    const [state, dispatch] = useReducer(authReducer, initialState);
+    const { usuario, estaAutenticado, loadingAuth, error } = state;
 
     const loginUsuario = async (usuario) => {
-        setLoadingAuth(true)
+        dispatch({ type: ACTIONS.INIT_REQUEST })
         try {
             const response = await peticionLogin(usuario);
-            setUsuario(response.data.usuario)
-            setEstaAutenticado(true)
-            setError(null)
-
+            dispatch({ type: ACTIONS.LOGIN_USUARIO, payload: response.data.usuario })
             localStorage.setItem('token', response.data.token)
         } catch (error) {
             console.log(error);
-
-            setError(error.response.data.message)
+            dispatch({ type: ACTIONS.AUTH_ERRORS, payload: error.response.data.message })
         }
-        setLoadingAuth(false)
     }
 
     const registroUsuario = async (usuario) => {
-        setLoadingAuth(true)
+        dispatch({ type: ACTIONS.INIT_REQUEST })
         try {
             const response = await peticionRegister(usuario)
-
-            setUsuario(response.data.usuario)
-            setEstaAutenticado(true)
-            setError(null)
+            dispatch({ type: ACTIONS.LOGIN_USUARIO, payload: response.data.usuario })
             localStorage.setItem('token', response.data.token)
         } catch (error) {
             setError(error.response.data.message)
-            console.log(error.response.data.message)
+            dispatch({ type: ACTIONS.AUTH_ERRORS, payload: error.response.data.message })
         }
-        setLoadingAuth(false)
+
     }
 
     const logoutUsuario = async () => {
-        setUsuario(null)
-        setEstaAutenticado(false)
-        setError(null)
-        setLoadingAuth(false)
-
+        dispatch({ type: ACTIONS.LOGOUT })
         localStorage.removeItem('token')
         navigate("/")
     }
 
     const verificarLogin = async () => {
-        setLoadingAuth(true)
+        dispatch({ type: ACTIONS.INIT_REQUEST })
         const token = localStorage.getItem('token');
         // si existe el token, vamos a validarlo en el backend, para ello haremos la petición correspondiente.
         if (token) {
 
             try {
                 const response = await peticionVerificarLogin();
-                setUsuario(response.data);
-                setEstaAutenticado(true);
-                setLoadingAuth(false);
-                setError(null);
+                dispatch({ type: ACTIONS.LOGIN_USUARIO, payload: response.data })
+
             } catch (error) {
-                setUsuario(null)
-                setEstaAutenticado(false)
-                setError(error.response.data.message)
-                setLoadingAuth(false);
+                dispatch({ type: ACTIONS.AUTH_ERRORS, payload: error.response.data.message })
             }
+        } else {
+            dispatch({ type: ACTIONS.VERIFY_FAILURE })
         }
-        setLoadingAuth(false);
+
     }
 
     // useEffect para verificar si el usuario está logeado en cuanto se renderiza por primera vez la app
