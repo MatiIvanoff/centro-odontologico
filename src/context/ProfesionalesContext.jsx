@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { peticionListarProfesionalesPorServicio } from "../API/profesionales";
 
 
@@ -12,23 +12,63 @@ export const useProfesionalesContext = () => {
     return context
 }
 
+const initialState = {
+    isLoading: false,
+    errors: null,
+    profesionalesPorServicios: [],
+}
+
+const profesionalesReducer = (state, action) => {
+    switch (action.type) {
+        case 'INIT_FETCH_PROFESIONALES':
+            return {
+                ...state,
+                isLoading: true,
+            }
+        case 'SUCCESS_FETCH_PROFESIONALES':
+            return {
+                ...state,
+                isLoading: false,
+                errors: null,
+                profesionalesPorServicios: action.payload
+            }
+        case 'SET_ERRORS':
+            return {
+                ...state,
+                errors: action.payload,
+                isLoading: false
+            }        
+        default:
+            break;
+    }
+}
+
 export const ProfesionalesProvider = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [errors, setErrors] = useState(null);
-    const [profesionalesPorServicios, setProfesionalesPorServicios] = useState([])
+    const [state, dispatch] = useReducer(profesionalesReducer, initialState)
+
+    const {isLoading, errors, profesionalesPorServicios} = state
 
     const listarProfesionalesPorServicios = async (id) => {
-        setIsLoading(true)
+        dispatch({
+            type: 'INIT_FETCH_PROFESIONALES'
+        })
+
         try {
             const response = await peticionListarProfesionalesPorServicio(id)
-            setProfesionalesPorServicios(response.data);
-            setErrors(null)
+            dispatch({
+                type: 'SUCCESS_FETCH_PROFESIONALES',
+                payload: response.data
+            })
+
         } catch (error) {
             console.log(error);
-            setErrors(error.response.data.message)
+            dispatch({
+                type: 'SET_ERRORS',
+                payload: error.response.data.message
+            })
  
         }
-        setIsLoading(false)
+        
     }
     return (
         <PrefesionalesContext.Provider value={{
