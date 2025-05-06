@@ -13,6 +13,8 @@ import { AuthProvider } from "./context/authContext"
 import { EspecialistasServicio } from "./pages/DetalleServicio/EspecialistasServicio/EspecialistasServicio"
 import { ServiceProvider } from "./context/ServiceContext"
 import { ProfesionalesProvider } from "./context/ProfesionalesContext"
+import { Panel } from "./pages/admin/Panel/Panel"
+import { RutasProtegidasAdmin } from "./RutasProtegidasAdmin"
 
 
 
@@ -24,6 +26,7 @@ function App() {
         <ProfesionalesProvider>
           <MainHeader />
           <Routes>
+
             <Route path="/" element={<Home />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/servicios" element={<Servicios />} />
@@ -33,6 +36,13 @@ function App() {
 
             <Route path="/registro" element={<RegistroDos />} />
             <Route path="/login" element={<Login />} />
+
+
+            <Route element={<RutasProtegidasAdmin />}>
+              <Route path="/panel" element={<Panel />} />
+            </Route>
+
+
 
 
             <Route path="/*" element={<NotFound />} />

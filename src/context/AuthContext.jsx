@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await peticionLogin(usuario);
             loginUser(response.data.usuario)
+            console.log(response.data.usuario);
             localStorage.setItem('token', response.data.token)
         } catch (error) {
             setAuthErrors(error.response.data.message)
@@ -63,8 +64,8 @@ export const AuthProvider = ({ children }) => {
         // si existe el token, vamos a validarlo en el backend, para ello haremos la petición correspondiente.
         if (token) {
             try {
-                const response = await peticionVerificarLogin();
-                loginUser(response.data.usuario)
+                const response = await peticionVerificarLogin();                
+                loginUser(response.data)
             } catch (error) {
                 setAuthErrors(error.response.data.message)
             }
