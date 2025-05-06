@@ -6,7 +6,7 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { peticionLogin, peticionRegister, peticionVerificarLogin } from "../API/auth";
 import { useNavigate } from "react-router";
-import { authReducer, initialState, ACTIONS } from "../reducer/authReducer/authReducer";
+import useAuthReducer from "../reducer/authReducer/useAuthReducer";
 
 
 
@@ -26,56 +26,50 @@ export const useAuthContext = () => {
 export const AuthProvider = ({ children }) => {
 
     const navigate = useNavigate()
-
-    const [state, dispatch] = useReducer(authReducer, initialState);
-    const { usuario, estaAutenticado, loadingAuth, error } = state;
+    const { usuario, estaAutenticado, loadingAuth, error, initRequest, loginUser, logoutUser, setAuthErrors, verifyFailure } = useAuthReducer()
 
     const loginUsuario = async (usuario) => {
-        dispatch({ type: ACTIONS.INIT_REQUEST })
+        initRequest()
         try {
             const response = await peticionLogin(usuario);
-            dispatch({ type: ACTIONS.LOGIN_USUARIO, payload: response.data.usuario })
+            loginUser(response.data.usuario)
             localStorage.setItem('token', response.data.token)
         } catch (error) {
-            console.log(error);
-            dispatch({ type: ACTIONS.AUTH_ERRORS, payload: error.response.data.message })
+            setAuthErrors(error.response.data.message)
         }
     }
 
     const registroUsuario = async (usuario) => {
-        dispatch({ type: ACTIONS.INIT_REQUEST })
+        initRequest()
         try {
             const response = await peticionRegister(usuario)
-            dispatch({ type: ACTIONS.LOGIN_USUARIO, payload: response.data.usuario })
+            loginUser(response.data.usuario)
             localStorage.setItem('token', response.data.token)
         } catch (error) {
-            setError(error.response.data.message)
-            dispatch({ type: ACTIONS.AUTH_ERRORS, payload: error.response.data.message })
+            setAuthErrors(error.response.data.message)
         }
 
     }
 
     const logoutUsuario = async () => {
-        dispatch({ type: ACTIONS.LOGOUT })
+        logoutUser();
         localStorage.removeItem('token')
         navigate("/")
     }
 
     const verificarLogin = async () => {
-        dispatch({ type: ACTIONS.INIT_REQUEST })
+        initRequest()
         const token = localStorage.getItem('token');
         // si existe el token, vamos a validarlo en el backend, para ello haremos la petición correspondiente.
         if (token) {
-
             try {
                 const response = await peticionVerificarLogin();
-                dispatch({ type: ACTIONS.LOGIN_USUARIO, payload: response.data })
-
+                loginUser(response.data.usuario)
             } catch (error) {
-                dispatch({ type: ACTIONS.AUTH_ERRORS, payload: error.response.data.message })
+                setAuthErrors(error.response.data.message)
             }
         } else {
-            dispatch({ type: ACTIONS.VERIFY_FAILURE })
+            verifyFailure()
         }
 
     }
